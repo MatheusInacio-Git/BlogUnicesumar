@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Categoria</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Adicionar Categoria</h1>
+
+        <form action="/users/edit/<%= user.id %>" method="POST">
+            <div class="mb-3">
+
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" id="nome" name="nome" class="form-control" value="<%= user.nome %>" required>
+
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" id="email" name="email" class="form-control" value="<%= user.email %>" required>
+                
+                <label for="senha" class="form-label">Senha:</label>
+                <input type="password" id="senha" name="senha" class="form-control" value="<%= user.senha %>" required>
+
+                <label for="cargo" class="form-label">Papel:</label>
+                <input type="text" id="cargo" name="cargo" class="form-control" value="<%= user.cargo %>" required>
+
+                <input class="form-check-input" type="checkbox" id="isAtivo" name="isAtivo" value="true"<%= user.isAtivo === 1 ? 'checked' : '' %>>
+                <label class="form-check-label" for="isAtivo">Ativo</label>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+            <a href="/users" class="btn btn-secondary mt-3">Ver Categorias</a>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

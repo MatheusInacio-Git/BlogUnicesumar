@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Unicesumar - Lista de Usuarios</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista de Usuarios</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Data de Cadastro</th>
+                    <th>Email</th>
+                    <th>Papel</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <div>
+                <% 
+                        function arrumarData(date) {
+                            const d = new Date(date);
+                            const dia = String(d.getDate()).padStart(2, '0');
+                            const mes = String(d.getMonth() + 1).padStart(2, '0');
+                            const ano = d.getFullYear();
+                            return `${dia}/${mes}/${ano}`;
+                        }
+                        %>
+            </div>
+
+            <tbody>
+                <% if (users.length > 0) { %>
+                    <% users.forEach(usuarios => { %>
+                        <tr>
+                            <td><%= usuarios.id %></td>
+                            <td><%= usuarios.nome %></td>
+                            <td><%= arrumarData(usuarios.cadastrado) %></td>
+                            <td><%= usuarios.email %></td>
+                            <td><%= usuarios.cargo %></td>
+                            <td>
+                                <form action="/users/edit/<%= usuarios.id %>" method="get">
+                                    <button type="submit" class="btn btn-primary">Editar</button>
+                                </form>
+                            </td>
+
+                            <td>
+                                <form action="/users/delete/<%= usuarios.id %>" method="post">
+                                    <button type="submit" class="btn btn-primary">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+
+                <%} else {%>
+                <tr>
+                    <td colspan="4">Nenhuma categoria cadastrada</td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <a href="/users/form" class="btn btn-primary mt-3">Adicionar</a>
+        <a href="/users/post" class="btn btn-primary mt-3">Ver Postagens</a>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
